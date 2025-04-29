@@ -12,6 +12,7 @@ from datetime import datetime
 http.client._MAXHEADERS = 1000  # Set to a higher value like 500 or 1000
 # CONFIGURATION
 openai_api_key = "test"
+
 websites = [
     "https://www.nih.gov",
     "https://www.cdc.gov",
