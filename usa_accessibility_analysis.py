@@ -11,39 +11,27 @@ from datetime import datetime
 
 http.client._MAXHEADERS = 1000  # Set to a higher value like 500 or 1000
 # CONFIGURATION
-openai_api_key = "test"
+shouldSendContext = True  # Set to True to include webpage context in alt-text generation
+openai_api_key = ""
 
 websites = [
     "https://www.nih.gov",
     "https://www.cdc.gov",
     "https://www.fda.gov",
-    "https://www.healthline.com",
     "https://www.webmd.com",
-    "https://www.medicalnewstoday.com",
     "https://www.mayoclinic.org",
-    "https://my.clevelandclinic.org/",
     "https://healthy.kaiserpermanente.org",
     "https://www.uhc.com",
-    "https://www.cigna.com",
-    "https://www.aetna.com",
-    "https://www.anthem.com",
     "https://www.drugs.com",
-    "https://www.goodrx.com",
     "https://www.cvs.com",
-    "https://www.labcorp.com",
-    "https://www.questdiagnostics.com",
     "https://www.athenahealth.com",
-    "https://www.epic.com",
-    "https://www.cerner.com",
-    "https://www.zocdoc.com",
 ]
-
 # Set up OpenAI client
 client = OpenAI(api_key=openai_api_key)
 
 # OUTPUT FILES
-csv_filename = "image_alt_text_report.csv"
-html_filename = "image_alt_text_report.html"
+csv_filename = "image_alt_text_report_context.csv" if shouldSendContext else "image_alt_text_report.csv"
+html_filename = "image_alt_text_report_context.html" if shouldSendContext else "image_alt_text_report.html"
 
 # HELPER FUNCTIONS
 def fetch_homepage(url):
@@ -89,9 +77,7 @@ def get_images(html_content, base_url):
     soup = BeautifulSoup(html_content, 'html.parser')
     images = soup.find_all('img')
     valid_images = []
-
     supported_extensions = ('.png', '.jpg', '.jpeg', '.webp', '.gif')
-
     for img in images:
         src = img.get('src')
         if not src:
@@ -156,15 +142,174 @@ def download_image(image_url):
         print(f"Failed to download image {image_url}: {e}")
         return None
 
-def generate_alt_text(image_url, image_bytes):
+
+from bs4.element import NavigableString, Tag
+
+def get_image_context(soup, img_element=None, image_url=None):
+    """
+    Extract relevant context around an image (without using the existing alt).
+    Returns a string of collected context suitable for alt-text generation.
+    """
+    if img_element is None and image_url:
+        for attr in ['src', 'data-src', 'srcset']:
+            img_element = soup.find('img', {attr: image_url})
+            if img_element:
+                break
+        if not img_element:
+            for img in soup.find_all('img'):
+                srcset = img.get('srcset', '')
+                if image_url in srcset:
+                    img_element = img
+                    break
+        if not img_element:
+            return "Image not found in the document."
+
+    if not img_element:
+        return "No image element or URL provided."
+
+    context = []
+
+    # 1. Title attribute
+    title = img_element.get('title', '')
+    if title:
+        context.append(f"Title: {title}")
+
+    # 2. Figcaption if available
+    figure = img_element.find_parent('figure')
+    if figure:
+        figcaption = figure.find('figcaption')
+        if figcaption:
+            context.append(f"Caption: {figcaption.get_text(strip=True)}")
+
+    # 3. Headings nearby (within 3 parent levels and previous siblings)
+    def find_nearest_heading(el):
+        heading_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+        max_levels = 3
+        for _ in range(max_levels):
+            if not el:
+                break
+            # Look in previous siblings
+            for sibling in el.find_previous_siblings():
+                if sibling.name in heading_tags:
+                    return sibling.get_text(strip=True)
+            el = el.parent
+        return None
+
+    heading = find_nearest_heading(img_element)
+    if heading:
+        context.append(f"Nearby heading: {heading}")
+
+    # 4. Container/parent text (within 2 levels up)
+    valid_containers = ['div', 'article', 'section', 'figure', 'p']
+    current = img_element
+    for _ in range(2):
+        if not current.parent:
+            break
+        current = current.parent
+        if current.name in valid_containers:
+            # Extract non-empty text that’s not from <img> siblings
+            text_parts = [t.strip() for t in current.strings if isinstance(t, NavigableString) and t.strip()]
+            if text_parts:
+                container_text = ' '.join(text_parts[:3])  # limit to 3 segments
+                context.append(f"Container text: {container_text}")
+            break
+
+    # 5. Nearby text siblings (more tolerant logic)
+    def get_nearby_text(el, direction='prev', limit=3):
+        texts = []
+        count = 0
+        sibling = el.previous_sibling if direction == 'prev' else el.next_sibling
+        while sibling and count < limit:
+            if isinstance(sibling, NavigableString) and sibling.strip():
+                texts.append(sibling.strip())
+                count += 1
+            elif isinstance(sibling, Tag) and sibling.name in ['p', 'span', 'div', 'li']:
+                txt = sibling.get_text(strip=True)
+                if txt:
+                    texts.append(txt)
+                    count += 1
+            sibling = sibling.previous_sibling if direction == 'prev' else sibling.next_sibling
+        return texts
+
+    prev_texts = get_nearby_text(img_element, 'prev')
+    next_texts = get_nearby_text(img_element, 'next')
+    if prev_texts:
+        context.append("Previous text: " + ' '.join(prev_texts))
+    if next_texts:
+        context.append("Next text: " + ' '.join(next_texts))
+
+    # 6. Nearby paragraphs (within 2 siblings up/down)
+    def find_nearby_paragraphs(img, limit=2):
+        paragraphs = []
+        for parent in img.parents:
+            if not parent or parent.name in ['body', 'html']:
+                break
+            ps = parent.find_all('p')
+            for p in ps:
+                if p and p.get_text(strip=True):
+                    paragraphs.append(p.get_text(strip=True))
+            if paragraphs:
+                break
+        return paragraphs[:limit]
+
+    paragraphs = find_nearby_paragraphs(img_element)
+    for i, para in enumerate(paragraphs):
+        context.append(f"Nearby paragraph {i + 1}: {para}")
+
+    # 7. ARIA or semantic hints
+    if 'aria-label' in img_element.attrs:
+        context.append(f"ARIA label: {img_element['aria-label']}")
+    if 'aria-labelledby' in img_element.attrs:
+        label_id = img_element['aria-labelledby']
+        label_el = soup.find(id=label_id)
+        if label_el:
+            context.append(f"ARIA labelledby: {label_el.get_text(strip=True)}")
+
+    # 8. Image link
+    parent_link = img_element.find_parent('a')
+    if parent_link:
+        link_text = parent_link.get_text(strip=True)
+        href = parent_link.get('href', '')
+        if href:
+            context.append(f"Linked URL: {href}")
+        if link_text:
+            context.append(f"Link text: {link_text}")
+
+    return '\n'.join(context[:12])[:1500]  # reasonable size for context to feed into models
+
+
+def generate_alt_text(image_url, image_bytes, webpage_content=None):
     try:
+        base_prompt = """Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+"""
+        context_prompt = ""
+        if shouldSendContext and webpage_content:
+            soup = BeautifulSoup(webpage_content, 'html.parser')
+            img_element = soup.find('img', src=image_url)
+            if img_element:
+                try:
+                    context = get_image_context(soup, img_element)
+                    print('context:', context)
+                    context_prompt = f"\nHere is the relevant context around the image:\n{context}\nPlease generate appropriate alt text for the image considering this context.\n"
+                except Exception as e:
+                    print('exception when processing context:', e)
+                    context_prompt = ""
+
+        full_prompt = base_prompt + context_prompt
+
         response = client.chat.completions.create(
             model="gpt-4.1",
             messages=[
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": "`Generate a concise and descriptive alt text for accessibility purposes.`"},
+                        {"type": "text", "text": full_prompt},
                         {
                             "type": "image_url",
                             "image_url": {
@@ -175,7 +320,7 @@ def generate_alt_text(image_url, image_bytes):
                 ]}
             ],
         )
-        return response.choices[0].message.content.strip()
+        return response.choices[0].message.content.strip(), full_prompt
     except Exception as e:
         print(f"OpenAI API error: {e}")
 
@@ -190,7 +335,7 @@ def generate_alt_text(image_url, image_bytes):
                     {
                         "role": "user",
                         "content": [
-                            {"type": "text", "text": "Generate a concise and descriptive alt text for accessibility purposes."},
+                            {"type": "text", "text": full_prompt},
                             {
                                 "type": "image_url",
                                 "image_url": {
@@ -202,12 +347,12 @@ def generate_alt_text(image_url, image_bytes):
                     }
                 ],
             )
-            return response.choices[0].message.content.strip()
+            return response.choices[0].message.content.strip(), full_prompt
         except Exception as fallback_error:
             print(f"Base64 fallback also failed: {fallback_error}")
-            return "API_ERROR"
+            return "API_ERROR", base_prompt
         else:
-            return "No image bytes could be retrieved."
+            return "No image bytes could be retrieved.", base_prompt
 
 
 def safe_filename(url):
@@ -231,12 +376,12 @@ for site_url in websites:
         image_bytes = download_image(img_url)
 
         if image_bytes:
-            ai_alt = generate_alt_text(img_url, image_bytes)
+            ai_alt, prompt_used = generate_alt_text(img_url, image_bytes, homepage if shouldSendContext else None)
             time.sleep(5)
         else:
             print("image download failed, skipped")
             with open('image_download_failed.txt', 'a') as f:
-                f.write(img_url + "\n");
+                f.write(img_url + "\n")
             continue
 
         has_alt = 'Yes' if existing_alt is not None else 'No'
@@ -246,13 +391,14 @@ for site_url in websites:
             'image_url': img_url,
             'existing_alt': existing_alt if existing_alt else "",
             'ai_generated_alt': ai_alt,
-            'alt_present': has_alt
+            'alt_present': has_alt,
+            'prompt_used': prompt_used
         }
         all_results.append(result)
 
 # WRITE CSV
 with open(csv_filename, mode='w', newline='', encoding='utf-8') as csv_file:
-    fieldnames = ['page_url', 'image_url', 'existing_alt', 'ai_generated_alt', 'alt_present']
+    fieldnames = ['page_url', 'image_url', 'existing_alt', 'ai_generated_alt', 'alt_present', 'prompt_used']
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
     writer.writeheader()
     for entry in all_results:
@@ -269,6 +415,17 @@ html_content = """
 table { width: 100%; border-collapse: collapse; }
 th, td { border: 1px solid black; padding: 8px; text-align: left; }
 img { max-width: 200px; height: auto; }
+.prompt { 
+    max-width: 500px; 
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
 </style>
 </head>
 <body>
@@ -280,10 +437,13 @@ img { max-width: 200px; height: auto; }
 <th>Existing Alt Text</th>
 <th>AI-Generated Alt Text (gpt-4.1)</th>
 <th>Alt Present</th>
+<th>Prompt Used</th>
 </tr>
 """
 
 for entry in all_results:
+    # Escape HTML special characters in the prompt
+    escaped_prompt = entry['prompt_used'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
     html_content += f"""
     <tr>
         <td><a href="{entry['page_url']}" target="_blank">{entry['page_url']}</a></td>
@@ -291,6 +451,7 @@ for entry in all_results:
         <td>{entry['existing_alt']}</td>
         <td>{entry['ai_generated_alt']}</td>
         <td>{entry['alt_present']}</td>
+        <td class="prompt">{escaped_prompt}</td>
     </tr>
     """
 
