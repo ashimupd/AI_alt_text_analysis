@@ -11,7 +11,7 @@ from datetime import datetime
 
 http.client._MAXHEADERS = 1000  # Set to a higher value like 500 or 1000
 # CONFIGURATION
-shouldSendContext = True  # Set to True to include webpage context in alt-text generation
+shouldSendContext = False  # Set to True to include webpage context in alt-text generation
 openai_api_key = ""
 
 websites = [
@@ -143,13 +143,14 @@ def download_image(image_url):
         return None
 
 
-from bs4.element import NavigableString, Tag
+from bs4 import NavigableString, Tag
 
 def get_image_context(soup, img_element=None, image_url=None):
     """
     Extract relevant context around an image (without using the existing alt).
     Returns a string of collected context suitable for alt-text generation.
     """
+
     if img_element is None and image_url:
         for attr in ['src', 'data-src', 'srcset']:
             img_element = soup.find('img', {attr: image_url})
@@ -188,16 +189,29 @@ def get_image_context(soup, img_element=None, image_url=None):
         for _ in range(max_levels):
             if not el:
                 break
-            # Look in previous siblings
             for sibling in el.find_previous_siblings():
                 if sibling.name in heading_tags:
                     return sibling.get_text(strip=True)
             el = el.parent
         return None
 
+    # Forward heading search
+    def find_forward_heading(el):
+        for sibling in el.find_next_siblings():
+            if sibling.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                return sibling.get_text(strip=True)
+            for desc in sibling.descendants:
+                if isinstance(desc, Tag) and desc.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                    return desc.get_text(strip=True)
+        return None
+
     heading = find_nearest_heading(img_element)
     if heading:
         context.append(f"Nearby heading: {heading}")
+    else:
+        forward_heading = find_forward_heading(img_element)
+        if forward_heading:
+            context.append(f"Forward heading: {forward_heading}")
 
     # 4. Container/parent text (within 2 levels up)
     valid_containers = ['div', 'article', 'section', 'figure', 'p']
@@ -207,14 +221,13 @@ def get_image_context(soup, img_element=None, image_url=None):
             break
         current = current.parent
         if current.name in valid_containers:
-            # Extract non-empty text that’s not from <img> siblings
             text_parts = [t.strip() for t in current.strings if isinstance(t, NavigableString) and t.strip()]
             if text_parts:
-                container_text = ' '.join(text_parts[:3])  # limit to 3 segments
+                container_text = ' '.join(text_parts[:3])
                 context.append(f"Container text: {container_text}")
             break
 
-    # 5. Nearby text siblings (more tolerant logic)
+    # 5. Nearby text siblings
     def get_nearby_text(el, direction='prev', limit=3):
         texts = []
         count = 0
@@ -238,7 +251,7 @@ def get_image_context(soup, img_element=None, image_url=None):
     if next_texts:
         context.append("Next text: " + ' '.join(next_texts))
 
-    # 6. Nearby paragraphs (within 2 siblings up/down)
+    # 6. Nearby paragraphs (within 2 ancestors)
     def find_nearby_paragraphs(img, limit=2):
         paragraphs = []
         for parent in img.parents:
@@ -275,7 +288,54 @@ def get_image_context(soup, img_element=None, image_url=None):
         if link_text:
             context.append(f"Link text: {link_text}")
 
-    return '\n'.join(context[:12])[:1500]  # reasonable size for context to feed into models
+    # 9. DOM label hints (class/id)
+    def get_dom_label_hints(el):
+        for _ in range(3):
+            if not el or el.name in ['body', 'html']:
+                break
+            if el.has_attr('id'):
+                return f"Container ID: {el['id']}"
+            if el.has_attr('class'):
+                return f"Container class: {' '.join(el['class'])}"
+            el = el.parent
+        return None
+
+    dom_hint = get_dom_label_hints(img_element)
+    if dom_hint:
+        context.append(dom_hint)
+
+    # 10. Nearby list items
+    def find_nearby_list_items(el):
+        ul = el.find_parent(['ul', 'ol'])
+        if ul:
+            items = ul.find_all('li')
+            texts = [li.get_text(strip=True) for li in items if li.get_text(strip=True)]
+            return texts[:3]
+        return []
+
+    list_items = find_nearby_list_items(img_element)
+    if list_items:
+        context.append("List context: " + ' | '.join(list_items))
+
+    # 11. Nearby table cells
+    def find_nearby_table_cells(el):
+        table = el.find_parent('table')
+        if table:
+            cells = table.find_all(['td', 'th'])
+            texts = [c.get_text(strip=True) for c in cells if c.get_text(strip=True)]
+            return texts[:4]
+        return []
+
+    table_cells = find_nearby_table_cells(img_element)
+    if table_cells:
+        context.append("Table context: " + ' | '.join(table_cells))
+
+    # 12. Fallback if context is too sparse
+    if not context:
+        context.append("No clear textual context found. Consider examining closest headings or surrounding DOM structure for hints.")
+
+    return '\n'.join(context[:12])[:1500]
+
 
 
 def generate_alt_text(image_url, image_bytes, webpage_content=None):

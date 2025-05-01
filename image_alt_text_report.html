@@ -6,6 +6,17 @@
 table { width: 100%; border-collapse: collapse; }
 th, td { border: 1px solid black; padding: 8px; text-align: left; }
 img { max-width: 200px; height: auto; }
+.prompt { 
+    max-width: 500px; 
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
 </style>
 </head>
 <body>
@@ -17,383 +28,759 @@ img { max-width: 200px; height: auto; }
 <th>Existing Alt Text</th>
 <th>AI-Generated Alt Text (gpt-4.1)</th>
 <th>Alt Present</th>
+<th>Prompt Used</th>
 </tr>
 
     <tr>
         <td><a href="https://www.nih.gov" target="_blank">https://www.nih.gov</a></td>
         <td><img src="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" alt="Image"></td>
         <td>National Institutes of Health (NIH) - Turning Discovery into Health</td>
-        <td>Logo of the National Institutes of Health featuring a gray geometric emblem on the left and the text "NIH" in gray on a blue background.</td>
+        <td>NIH logo</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.nih.gov" target="_blank">https://www.nih.gov</a></td>
         <td><img src="https://www.nih.gov/sites/default/files/styles/slide_breakpoint-medium-small/public/home_0/slides/current/slide-dr-bhattacharya.jpg?itok=SViwtSTm&timestamp=1745430468" alt="Image"></td>
         <td>Dr. Bhattacharya</td>
-        <td>A man with gray hair and glasses, wearing a suit and tie, smiles in front of the United States flag and a blue government flag.</td>
+        <td>Smiling professional posed in front of an American flag and a blue government banner, illustrating federal agency leadership.</td>
         <td>Yes</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.nih.gov" target="_blank">https://www.nih.gov</a></td>
-        <td><img src="https://www.nih.gov/sites/default/files/styles/slide_breakpoint-medium-small/public/home_0/slides/current/slide-dnaday-2024.jpg?itok=PB8ejPRq&timestamp=1745430506" alt="Image"></td>
-        <td>Photo of a young girl holding a DNA model</td>
-        <td>Smiling young girl wearing glasses holds a colorful DNA model in a classroom.</td>
-        <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.nih.gov" target="_blank">https://www.nih.gov</a></td>
         <td><img src="https://www.nih.gov/sites/default/files/styles/slide_breakpoint-medium-small/public/home_0/slides/current/20250422-slide-ric-2.jpg?itok=ylnRqkZ6&timestamp=1745439170" alt="Image"></td>
         <td>Illustration of a molecular structure emerging from a computer screen.</td>
-        <td>A close-up illustration of red molecular structures floating in front of a digital, blue and purple background with data and glowing lights.</td>
+        <td>Digital molecular structure with data interface, representing biotechnology research</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.nih.gov" target="_blank">https://www.nih.gov</a></td>
         <td><img src="https://www.nih.gov/sites/default/files/styles/slide_breakpoint-medium-small/public/home_0/slides/current/slide-heartburn.jpg?itok=oMuUkbMN&timestamp=1745433034" alt="Image"></td>
         <td>A man in a white shirt and tie, indoors, pressing down on his chest with an uncomfortable expression, experiencing heartburn.</td>
-        <td>A man in a white dress shirt and tie stands outdoors, clutching his chest with a pained expression, possibly experiencing discomfort or chest pain.</td>
+        <td>Man experiencing chest discomfort, possibly indicating heart-related issues</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.nih.gov" target="_blank">https://www.nih.gov</a></td>
+        <td><img src="https://www.nih.gov/sites/default/files/styles/slide_breakpoint-medium-small/public/home_0/slides/current/woman-looking-out-window-april.png?itok=RPh-ISji&timestamp=1744297993" alt="Image"></td>
+        <td>woman looking out a window</td>
+        <td>Woman gazing thoughtfully out a window in a bright, modern room</td>
+        <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cdc.gov" target="_blank">https://www.cdc.gov</a></td>
         <td><img src="https://www.cdc.gov/homepage/images/asthma-pollen.jpg" alt="Image"></td>
         <td>Health Topics</td>
-        <td>Close-up of tall yellow wildflowers with feathery blooms in a field, set against a blurred green background.</td>
+        <td>Yellow wildflowers in bloom in a field</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cdc.gov" target="_blank">https://www.cdc.gov</a></td>
         <td><img src="https://www.cdc.gov/TemplatePackage/5.0/img/homepage/aboutcdc.png" alt="Image"></td>
         <td>About CDC</td>
-        <td>Large outdoor sign for the CDC (Centers for Disease Control and Prevention) at the Edward R. Roybal Campus, featuring the CDC logo and U.S. Department of Health and Human Services seal.</td>
+        <td>CDC headquarters exterior sign at Edward R. Roybal Campus</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cdc.gov" target="_blank">https://www.cdc.gov</a></td>
         <td><img src="https://www.cdc.gov/homepage/images/banner/measles-doctor-mom.jpg" alt="Image"></td>
         <td>Ways to Prevent Measles</td>
-        <td>A doctor consults with a smiling woman holding a baby on her lap in a medical office.</td>
+        <td>Doctor consulting mother holding baby</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cdc.gov" target="_blank">https://www.cdc.gov</a></td>
         <td><img src="https://www.cdc.gov/homepage/images/banner/Good-Nutrition.jpg" alt="Image"></td>
         <td>Good Nutrition Starts Early</td>
-        <td>Young girl smiling at a kitchen counter while preparing a bowl of fruit salad, with various fresh fruits like bananas, apples, grapes, and mangoes in the background.</td>
+        <td>Child smiling while preparing a bowl of fruit salad in a kitchen.</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cdc.gov" target="_blank">https://www.cdc.gov</a></td>
         <td><img src="https://www.cdc.gov/homepage/images/banner/bird-flu-1700x768-1.jpg" alt="Image"></td>
         <td>H5 Bird Flu: Current Situation</td>
-        <td>A brown cow with yellow ear tags stands in the foreground of a covered barn, with other cows lined up behind it.</td>
+        <td>Cow in a barn looking toward the camera</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.fda.gov" target="_blank">https://www.fda.gov</a></td>
         <td><img src="https://www.fda.gov/themes/custom/preview/assets/images/US_Flag.png" alt="Image"></td>
         <td>U.S. flag</td>
-        <td>An American flag with a blue rectangle in the top left corner containing a grid of white squares, and red and white horizontal stripes.</td>
+        <td>Stylized US flag with blue square containing white dots</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.fda.gov" target="_blank">https://www.fda.gov</a></td>
         <td><img src="https://www.fda.gov/files/styles/featured_content_background_image/public/commissioner.jpg?itok=Pjtrrbbe" alt="Image"></td>
         <td>HHS, FDA to Phase Out Petroleum-Based Synthetic Dyes in Nation’s Food Supply</td>
-        <td>A man in a suit stands at a podium, raising a small glass in a toast, with portraits of notable figures hanging on the wall behind him.</td>
+        <td>Man at podium raising a glass in a ceremonial toast with portraits in the background</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.fda.gov" target="_blank">https://www.fda.gov</a></td>
         <td><img src="https://www.fda.gov/files/styles/medium_3/public/highly_pathogenic_avian_influenza_hpai.png?itok=HHOfEdc7" alt="Image"></td>
         <td>Updates on Highly Pathogenic Avian Influenza</td>
-        <td>White text on a blue abstract background reads: "Highly Pathogenic Avian Influenza (HPAI)."</td>
+        <td>Highly Pathogenic Avian Influenza (HPAI) title on a blue abstract background</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.fda.gov" target="_blank">https://www.fda.gov</a></td>
         <td><img src="https://www.fda.gov/files/styles/medium_3/public/how_to_use_antibiotics_cu_final_1600x900.png?itok=LgFjllkT" alt="Image"></td>
         <td>Two image collage that depicts a mature gentleman holding his prescription pill bottles, while viewing his laptop, and a woman sneezing while she's speaking with a pharmacist.</td>
-        <td>A split image showing an older man sitting at home looking at a prescription bottle while using a laptop on one side, and a woman coughing into her elbow while speaking to a pharmacist in a pharmacy on the other side.</td>
+        <td>Man researching medication online; pharmacist assisting woman with cough</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.fda.gov" target="_blank">https://www.fda.gov</a></td>
         <td><img src="https://www.fda.gov/files/styles/medium_3/public/hfp_tile.png?itok=vV-GYjSO" alt="Image"></td>
         <td>FDA Modernization Efforts for a Unified Human Foods Program, Redesigned Field Operations & More</td>
-        <td>Alt text:  
-White text on a blue and green abstract background reads, "Update on the Unified HFP, OII & Other Modernization Efforts."</td>
+        <td>Unified HFP, OII, and modernization efforts update announcement</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.webmd.com" target="_blank">https://www.webmd.com</a></td>
         <td><img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/best_and_worst_drinks_for_weight_loss_slideshow/1800ss_getty_rf_friends_eating_meal.jpg?resize=484px:*&output-quality=70" alt="Image"></td>
         <td>photo of friends eating meal</td>
-        <td>Four adults sit around a table, smiling and talking while enjoying food and drinks together.</td>
+        <td>Friends enjoying a meal and conversation together</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.webmd.com" target="_blank">https://www.webmd.com</a></td>
         <td><img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/BigBead/understanding_parkinsons_disease_bigbead/1800x1200_understanding_parkinsons_disease_bigbead.jpg?resize=484px:*&output-quality=70" alt="Image"></td>
         <td>photo of Asian patient with doctor</td>
-        <td>An older man smiles while speaking with a doctor who is holding a clipboard in a medical office.</td>
+        <td>Patient consulting with doctor in a medical office</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.webmd.com" target="_blank">https://www.webmd.com</a></td>
         <td><img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/SEEDs/top_exercises_for_knee_pain_seed/1800x1200_top_exercises_for_knee_pain_seed.jpg?resize=484px:*&output-quality=70" alt="Image"></td>
         <td>photo of  Woman practicing yoga, Glute Bridge exer</td>
-        <td>A woman practicing yoga indoors, lying on her back with knees bent and feet flat on the floor, lifting her hips into a bridge pose.</td>
+        <td>Person practicing bridge pose on a yoga mat in a sunlit room</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.webmd.com" target="_blank">https://www.webmd.com</a></td>
         <td><img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/foods_to_help_you_ease_bloating_slideshow/1800ss_getty_rf_kefir_drink_and_spoonful_of_grains.jpg?resize=484px:*&output-quality=70" alt="Image"></td>
         <td>photo of kefir drink and spoonful of grains</td>
-        <td>A glass jar and a glass filled with kefir, with a spoon holding thick kefir grains above the jar.</td>
+        <td>Spoonful of kefir grains held above a jar of kefir with a glass of kefir nearby</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.webmd.com" target="_blank">https://www.webmd.com</a></td>
         <td><img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/living-healthy-mental-health.png?resize=484px:*&output-quality=70" alt="Image"></td>
         <td>photo of man</td>
-        <td>Illustration of a thoughtful young man with the top of his head open, revealing waves and a small person rowing a boat inside, symbolizing deep thinking or inner contemplation.</td>
+        <td>Man with contemplative expression; illustration depicts a boat rowing through waves inside his head, symbolizing inner thoughts or navigating emotions.</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.mayoclinic.org" target="_blank">https://www.mayoclinic.org</a></td>
         <td><img src="https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Arizona.png" alt="Image"></td>
         <td>Buildings on the Mayo Clinic campus in Phoenix, Arizona.</td>
-        <td>A modern building with "Mayo Clinic" signage is surrounded by desert landscaping, including cacti and shrubs, under a clear blue sky.</td>
+        <td>Mayo Clinic building with desert landscaping</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.mayoclinic.org" target="_blank">https://www.mayoclinic.org</a></td>
         <td><img src="https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Florida.png" alt="Image"></td>
         <td>Buildings on the Mayo Clinic campus in Jacksonville, Florida.</td>
-        <td>A white multi-story building surrounded by green trees, with pink flowers blooming in the foreground and a blue sky above.</td>
+        <td>White hospital building behind blooming pink flowers and trees, representing a serene healthcare environment.</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.mayoclinic.org" target="_blank">https://www.mayoclinic.org</a></td>
         <td><img src="https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Minnesota.png" alt="Image"></td>
         <td>Buildings on the Mayo Clinic campus in Rochester, Minnesota.</td>
-        <td>A sunny courtyard with colorful flower beds and green trees, surrounded by modern glass and steel high-rise buildings.</td>
+        <td>Modern hospital campus with landscaped gardens and sculptures, illustrating advanced healthcare environment.</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.mayoclinic.org" target="_blank">https://www.mayoclinic.org</a></td>
         <td><img src="https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Mayo Clinic Health System.png" alt="Image"></td>
         <td>A Mayo Clinic Health System building.</td>
-        <td>A modern brick and glass medical building with large windows, surrounded by trees and colorful flower planters on a sunny day.</td>
+        <td>Hospital entrance with flower planters and trees on a sunny day</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.mayoclinic.org" target="_blank">https://www.mayoclinic.org</a></td>
         <td><img src="https://assets.mayoclinic.org/content/dam/media/global/images/2024/04/30/Mayo Clinic Healthcare London UK.png" alt="Image"></td>
         <td>A building in London, United Kingdom.</td>
-        <td>A multi-story stone building with large, evenly spaced windows illuminated from within, featuring a central entrance with steps, arched windows on the ground floor, a balcony with potted trees on the first floor, and a streetlamp and adjacent brick building visible.</td>
+        <td>Office building exterior with large windows and evening lighting</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://healthy.kaiserpermanente.org" target="_blank">https://healthy.kaiserpermanente.org</a></td>
         <td><img src="https://healthy.kaiserpermanente.org/content/dam/kporg/front-door/couple-playing-piggy-back-in-a-park/couple-playing-piggy-back-in-a-park-l-dt.jpg" alt="Image"></td>
         <td>Couple playing piggyback in a park</td>
-        <td>A smiling man gives a piggyback ride to a laughing woman outdoors, with trees and sunlight in the background.</td>
+        <td>Couple laughing together outdoors</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://healthy.kaiserpermanente.org" target="_blank">https://healthy.kaiserpermanente.org</a></td>
         <td><img src="https://healthy.kaiserpermanente.org/content/dam/kporg/front-door/couple-setting-the-table-with-food-for-a-meal/couple-setting-the-table-with-food-for-a-meal-l-dt.jpg" alt="Image"></td>
         <td>Couple setting the table with food for a meal</td>
-        <td>A man in a maroon sweatshirt looks at his phone while holding a small jar; a woman and child are at a dining table in the background with breakfast items spread out.</td>
+        <td>Man looking at his phone while holding a food container at breakfast table, with a woman setting food in the background</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://healthy.kaiserpermanente.org" target="_blank">https://healthy.kaiserpermanente.org</a></td>
         <td><img src="https://healthy.kaiserpermanente.org/content/dam/kporg/front-door/parent-and-child-planting-a-seedling/parent-and-child-planting-a-seedling-l-dt.jpg" alt="Image"></td>
         <td>Parent and child planting a seedling</td>
-        <td>An adult and a child plant a young green seedling together in soil, with the child smiling in the background.</td>
+        <td>Adult and child planting a young seedling together in a garden bed</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://healthy.kaiserpermanente.org" target="_blank">https://healthy.kaiserpermanente.org</a></td>
         <td><img src="https://healthy.kaiserpermanente.org/content/dam/kporg/front-door/adult-child-pushing-parent-in-a-wheelchair/adult-child-pushing-parent-in-a-wheelchair-l-dt.jpg" alt="Image"></td>
         <td>Adult child pushing parent in a wheelchair</td>
-        <td>A younger man smiles and stands behind an older man who is sitting in a wheelchair outdoors in a park.</td>
+        <td>Man assisting older adult in a wheelchair outdoors</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://healthy.kaiserpermanente.org" target="_blank">https://healthy.kaiserpermanente.org</a></td>
         <td><img src="https://healthy.kaiserpermanente.org/content/dam/kporg/front-door/older-couple-having-a-video-visit-with-a-doctor-on-their-laptop/older-couple-having-a-video-visit-with-a-doctor-on-their-laptop-l-dt.jpg" alt="Image"></td>
         <td>Older couple having a video visit with a doctor on their laptop</td>
-        <td>An older couple sits on a couch at home, having a video call with a doctor on a laptop placed on a small table in front of them.</td>
+        <td>Older couple video chatting with doctor on laptop in living room</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.uhc.com" target="_blank">https://www.uhc.com</a></td>
-        <td><img src="https://www.uhc.com/_jcr_content/root/regioncontainer-main/responsivegrid/container_copy/image.coreimg.90.1280.jpeg/1741016271291/241209-main-body-optum-ad-728x90.jpeg" alt="Image"></td>
-        <td>Fast, free standard delivery - Optum home delivery pharmacy. Learn more. Opens a new window</td>
-        <td>Banner promoting Optum Home Delivery Pharmacy with a truck icon and text: "Fast, free standard delivery." Optum logo and "Order now" button on the right.</td>
+        <td><img src="https://www.uhc.com/_jcr_content/root/regioncontainer-main/responsivegrid/container_copy_1937747104/image.coreimg.90.1280.jpeg/1744049981479/250414-main-hearing-ad-728x90-a.jpeg" alt="Image"></td>
+        <td>Learn more: How's your hearing? Don't miss a moment - get your hearing checked today. UnitedHealthcare Hearing. Opens a new window</td>
+        <td>Hearing test being conducted, promoting UnitedHealthcare Hearing services</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.uhc.com" target="_blank">https://www.uhc.com</a></td>
-        <td><img src="https://www.uhc.com/_jcr_content/root/regioncontainer-main/responsivegrid-bottom/container_copy_copy/image.coreimg.90.1280.jpeg/1732288070277/241209-footer-optum-ad-728x90.jpeg" alt="Image"></td>
-        <td>Optum home delivery pharmacy is always open. Learn more. Opens a new window</td>
-        <td>Banner with a pill bottle icon and text that reads, "Optum Home Delivery Pharmacy is always open." Optum logo and a "Learn more" button are on the right side.</td>
+        <td><img src="https://www.uhc.com/_jcr_content/root/regioncontainer-main/responsivegrid-bottom/container_copy/image.coreimg.90.1280.jpeg/1744050771106/250414-footer-hearing-ad-728x90.jpeg" alt="Image"></td>
+        <td>Start now: Let's talk about your hearing. Answer four questions to get started. UnitedHealthcare Hearing. Opens a new window</td>
+        <td>Mother and child sitting together, promoting UnitedHealthcare Hearing quiz with a "Start now" button.</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.drugs.com" target="_blank">https://www.drugs.com</a></td>
         <td><img src="https://www.drugs.com/img/logo/vendor/harvard-health-logo.png" alt="Image"></td>
         <td>Recommended content provider: Harvard Health Publishing</td>
-        <td>Harvard Health Publishing logo with a red shield featuring a white lion and the Latin motto "Veritas."</td>
+        <td>Harvard Health Publishing logo</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.drugs.com" target="_blank">https://www.drugs.com</a></td>
         <td><img src="https://www.drugs.com/img/logo/vendor/cerner-logo.png" alt="Image"></td>
         <td>Recommended content provider: Cerner Multum</td>
-        <td>Cerner logo with a green and blue abstract symbol to the left of the word "Cerner" in blue text.</td>
+        <td>Cerner logo</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.drugs.com" target="_blank">https://www.drugs.com</a></td>
         <td><img src="https://www.drugs.com/img/logo/vendor/ashp-logo.png" alt="Image"></td>
         <td>Recommended content provider: American Society of Health-System Pharmacists</td>
-        <td>ASHP logo in blue lowercase letters with an orange swoosh above the "p."</td>
+        <td>asHP logo with orange swoosh</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.drugs.com" target="_blank">https://www.drugs.com</a></td>
         <td><img src="https://www.drugs.com/img/logo/vendor/thomson-reuters-logo.png" alt="Image"></td>
         <td>Recommended content provider: Thomson Reuters</td>
-        <td>Alt text: "Thomson Reuters logo featuring an orange circular dotted design above the company name in black uppercase letters."</td>
+        <td>Thomson Reuters logo</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.drugs.com" target="_blank">https://www.drugs.com</a></td>
         <td><img src="https://www.drugs.com/img/v-20240725/apps/promo-uberapp.png" alt="Image"></td>
         <td>Drugs.com mobile app</td>
-        <td>Alt text: Smartphone screen displaying the Drugs.com app homepage, featuring a search bar and icons for features such as My Med List, Remove Ads, Drugs A-Z, Drugs by Condition, Discount Card, FDA Alerts, and Interactions.</td>
+        <td>Drugs.com mobile app home screen with icons for medication management and drug information</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cvs.com" target="_blank">https://www.cvs.com</a></td>
         <td><img src="https://www.cvs.com/content/dam/enterprise/cvsretail/homepage/hp00001/2025/wk18/half-new.jpg?im=Resize=(394,301)" alt="Image"></td>
         <td>A mother and child embrace in their living room.</td>
-        <td>A young child hugging and kissing a smiling woman on the cheek, with sunflowers in the foreground.</td>
+        <td>Mother and child smiling and hugging near sunflowers, expressing affection</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cvs.com" target="_blank">https://www.cvs.com</a></td>
         <td><img src="https://www.cvs.com/content/dam/enterprise/cvsretail/homepage/hp00001/2025/wk18/mothers-day-new-1.jpg?im=Resize=(328,412)" alt="Image"></td>
         <td>Wall tiles, a framed print and an Easter postcard.</td>
-        <td>Three framed family photos and a photo calendar, with a red badge displaying "Up to 80% off" in the top right corner.</td>
+        <td>Family photo prints with up to 80% off discount badge</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cvs.com" target="_blank">https://www.cvs.com</a></td>
         <td><img src="https://www.cvs.com/content/dam/enterprise/cvsretail/homepage/hp00001/2025/wk18/women-card-1.jpg?im=Resize=(393.6,367.76)" alt="Image"></td>
         <td>A patient speaks with her provider during a health screening.</td>
-        <td>A doctor in a white coat talks with a patient sitting on an exam table in a medical office.</td>
+        <td>Doctor and patient discussing health concerns in a medical office</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cvs.com" target="_blank">https://www.cvs.com</a></td>
         <td><img src="https://www.cvs.com/content/dam/enterprise/cvsretail/homepage/hp00001/2025/wk18/women-card-2.jpg?im=Resize=(417.5,240)" alt="Image"></td>
         <td>A pink and blue razor, with more dollar signs over a pink razor.</td>
-        <td>A blue razor with a single dollar sign above it and a pink razor with two dollar signs above it, highlighting a price difference.</td>
+        <td>Blue razor with single dollar sign and pink razor with double dollar sign, illustrating price difference.</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.cvs.com" target="_blank">https://www.cvs.com</a></td>
         <td><img src="https://www.cvs.com/content/dam/enterprise/cvsretail/homepage/hp00001/2025/wk18/women-card-3.jpg?im=Resize=(417.5,240)" alt="Image"></td>
         <td>Two older women spend time together outdoors.</td>
-        <td>Two women smiling and hugging each other outdoors, with blurred greenery in the background.</td>
+        <td>Two women hugging and smiling outdoors, expressing warmth and connection</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.athenahealth.com" target="_blank">https://www.athenahealth.com</a></td>
         <td><img src="https://caas.athenahealth.com/sites/default/files/2025-best-in-klas-overall-independent-physician-practice-suite.png" alt="Image"></td>
         <td>2025 best in klas overall independent physician practice suite</td>
-        <td>Alt text: Circular badge reading "Best in KLAS Overall Independent Physician Practice Suite 2025" with an illustration of a rock arch.</td>
+        <td>Best in KLAS Overall Independent Physician Practice Suite 2025 badge</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.athenahealth.com" target="_blank">https://www.athenahealth.com</a></td>
         <td><img src="https://caas.athenahealth.com/sites/default/files/2025-best-in-klas-ambulatory-ehr-11-75-physicians-independent.png" alt="Image"></td>
         <td>2025 best in klas-ambulatory ehr physicians independent</td>
-        <td>Circular badge with a stylized arch and text that reads: "Best in KLAS. Ambulatory EHR: Independent (11-75 Physicians). 2025."</td>
+        <td>Best in KLAS 2025 badge for Ambulatory EHR: Independent (11–75 physicians)</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.athenahealth.com" target="_blank">https://www.athenahealth.com</a></td>
         <td><img src="https://caas.athenahealth.com/sites/default/files/2025-best-in-klas-practice-management-11-75-physicians-independent.png" alt="Image"></td>
         <td>2025 best in klas practice management physicians independent</td>
-        <td>Alt text: Circular badge displaying "Best in KLAS Practice Management: Independent (11-75 Physicians) 2025" with an image of a rock arch.</td>
+        <td>Best in KLAS Practice Management Independent 2025 award badge</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.athenahealth.com" target="_blank">https://www.athenahealth.com</a></td>
         <td><img src="https://caas.athenahealth.com/sites/default/files/Logo_JoshuaMedical.png" alt="Image"></td>
         <td>Logo JoshuaMedical</td>
-        <td>Alt text: Logo with a small image of a Joshua tree at sunset on the left, and the text "Joshua Tree National Park Association" in black to the right.</td>
+        <td>Joshua Tree National Park logo with silhouette of a Joshua tree against a sunset background</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
     <tr>
         <td><a href="https://www.athenahealth.com" target="_blank">https://www.athenahealth.com</a></td>
         <td><img src="https://caas.athenahealth.com/sites/default/files/Testimonial_MaxineWhiteside.jpg" alt="Image"></td>
         <td>Testimonial_MaxineWhiteside</td>
-        <td>A woman with long brown hair wearing a black blazer and white top, smiling softly against a solid purple background.</td>
+        <td>Woman with long brown hair in a dark blazer smiling against a purple background</td>
         <td>Yes</td>
+        <td class="prompt">Generate alt text for accessibility purposes. The alt text should:
+1. Don't provide additional information in the the alt-text other than that conveyed by the image, but still consider the context
+2. Provide context on how the image relates to the page content
+3. Be accurate and equivalent in representing content and function
+4. Be succinct - typically only a few words are necessary, though rarely a short sentence or two may be appropriate. Content (if any) and function (if any) should be presented as succinctly as possible, without sacrificing accuracy.
+5. Not be redundant with nearby text
+6. Not include phrases like "image of..." or "graphic of..."
+</td>
     </tr>
     
 </table>
